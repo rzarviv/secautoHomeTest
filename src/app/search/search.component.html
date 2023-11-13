@@ -1,0 +1,10 @@
+<div>
+    <h3>Search for a movie</h3>
+</div>
+<form (ngSubmit)="searchMovie()" [formGroup]="movieSearchForm">
+    <label for="name">movie name:</label>
+    <input type="text" [formControl]="movieSearchForm.controls.name">
+    <button> search </button>
+</form>
+
+<app-search-results [results]="(searchResults$ | async) || []" [genres]="(genres$ | async) || []"></app-search-results>

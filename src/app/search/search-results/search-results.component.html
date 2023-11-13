@@ -1,0 +1,26 @@
+<select (change)="filterResults($event)">
+    <option *ngFor="let genre of genres" [value]="genre">{{genre}}</option>
+    <option [value]=""></option>
+</select>
+
+<ng-container *ngIf="!filtered">
+    <div *ngFor="let movie of results">
+        <div class="container">
+            <div class="item" (click)="showInfo(movie)">
+                <h3>{{movie.name}}</h3>
+                <img *ngIf="movie.image" [src]="movie.image" [alt]="movie.name">
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="filtered">
+    <div *ngFor="let movie of (filtered$ | async)">
+        <div class="container">
+            <div class="item" (click)="showInfo(movie)">
+                <h3>{{movie.name}}</h3>
+                <img *ngIf="movie.image" [src]="movie.image" [alt]="movie.name">
+            </div>
+        </div>
+    </div>
+</ng-container>
